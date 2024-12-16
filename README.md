@@ -9,4 +9,4 @@ Attributes for defining data model objects (schemas) in code.
 - Member data types can be native, enumerations, or external (via converters).
 - Used by MetaFac CG5 code generation tools (coming soon).
 - **Not** backward compatible with V1.
-- Supports .NET 8.0+
+- Supports .NET 8.0, 9.0
