@@ -1,4 +1,4 @@
-using FluentAssertions;
+using Shouldly;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -23,7 +23,7 @@ namespace FluentModels.UnitTests
         private EntityAttribute GetEntityAttribute(Type type)
         {
             Attribute customAttribute = type.GetCustomAttributes().Single();
-            customAttribute.Should().BeOfType<EntityAttribute>();
+            customAttribute.ShouldBeOfType<EntityAttribute>();
             return (EntityAttribute)customAttribute;
         }
 
@@ -31,18 +31,18 @@ namespace FluentModels.UnitTests
         public void Entity01_Active()
         {
             EntityAttribute entityAttribute = GetEntityAttribute(typeof(EntityA));
-            entityAttribute.UniqueId.Should().Be(new Guid("7311f284-ae1d-4d26-96f5-5e37f7a66c3e"));
-            entityAttribute.State.Should().Be(ItemState.Active);
-            entityAttribute.Reason.Should().BeNull();
+            entityAttribute.UniqueId.ShouldBe(new Guid("7311f284-ae1d-4d26-96f5-5e37f7a66c3e"));
+            entityAttribute.State.ShouldBe(ItemState.Active);
+            entityAttribute.Reason.ShouldBeNull();
         }
 
         [Fact]
         public void Entity02_Hidden()
         {
             EntityAttribute entityAttribute = GetEntityAttribute(typeof(EntityB));
-            entityAttribute.UniqueId.Should().Be(new Guid("d08e4ec2-917c-4bef-a6cf-133435e667ca"));
-            entityAttribute.State.Should().Be(ItemState.Hidden);
-            entityAttribute.Reason.Should().Be("Reserved");
+            entityAttribute.UniqueId.ShouldBe(new Guid("d08e4ec2-917c-4bef-a6cf-133435e667ca"));
+            entityAttribute.State.ShouldBe(ItemState.Hidden);
+            entityAttribute.Reason.ShouldBe("Reserved");
         }
     }
 }
